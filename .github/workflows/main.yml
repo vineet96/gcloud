@@ -1,0 +1,9 @@
+workflow "New workflow" {  
+  on = "push"
+  resolves = ["Build Docker image"]
+}
+
+action "Build Docker image" {  
+  uses = "actions/docker/cli@master"
+  args = ["build", "-t", "vineet96/gcloud:$(echo $GITHUB_SHA | head -c7)", "."]
+}
